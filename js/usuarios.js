@@ -178,3 +178,72 @@ function nuevoUsuario() {
     correo.value = "";
     myModal.show();
 }
+
+async function loginUser(event) {
+    event.preventDefault(); 
+
+    try {
+        const response = await fetch(`${API_BASE_URL}login/login`, {
+            method: 'POST',
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({                
+                "email": loginCorreo.value,                
+                "password": loginPassword.value
+            })
+        });        
+
+        let data = await response.json();
+
+        if (data.status === 404 || data.status ===401 || !response.ok) {
+            alert("Usuario y/o Contraseña incorrectos")
+            console.table(data);            
+            return false            
+        }
+
+        if (data.status === 200 || response.ok) {
+            alert(data.msg)
+            window.location.href = "form.html"
+            
+        }       
+        
+    } catch (error) {
+        alert(error);        
+    }    
+}
+
+async function registerForm(event) {    
+    event.preventDefault(); 
+    let method = 'POST';
+    let point = 'login/register'
+    try {
+        const response = await fetch(`${API_BASE_URL}${point}`, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({                    
+                "nombre": nombre.value,
+                "apellido": apellido.value,
+                "email": correo.value,
+                "puesto": puesto.value,
+                "password": password.value
+            })
+        });                        
+
+        let data = await response.json()
+        console.log(data);        
+
+        if (data.status == 409 || data.status == 500) {
+            alert("Usuario existente en la base");        }
+
+        if (data.status == 200 || response.ok) {            
+            window.location.href = "form.html"            
+        }
+    } catch (error) {
+        alert("Error en la conexion con la base");
+    }
+}

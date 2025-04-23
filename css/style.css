@@ -1,0 +1,30 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.navbar-brand img {
+    height: 60px;
+}
+
+.btn-change{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-change:hover{
+    color: blue;            
+}
