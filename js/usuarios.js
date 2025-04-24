@@ -3,6 +3,7 @@ const nombre = document.getElementById("nombre");
 const apellido = document.getElementById("apellido");
 const correo = document.getElementById("correo");
 const puesto = document.getElementById("puesto");
+const password = document.getElementById("contraseña");
 const tbody = document.getElementById("tbody");    
 const API_BASE_URL = 'http://localhost:8080/';
 const modalTitle = document.getElementById("title-modal");
@@ -118,7 +119,8 @@ async function enviarForm(event) {
                 "nombre": nombre.value,
                 "apellido": apellido.value,
                 "email": correo.value,
-                "puesto": puesto.value
+                "puesto": puesto.value,
+                "password": password.value
             })
         });
 
